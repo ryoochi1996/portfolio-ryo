@@ -1,0 +1,768 @@
+$color-main: #3F51B5;
+$color-accent:#E81919;
+$color-text:#333333;
+
+$layout-width-inner:1080px;
+
+//マップ型変数breakpointsを定義
+$breakpoints: (
+//キー値
+  'sp': "(max-width: 767px)", //767px以下（スマホ）用の表示
+  'tab':"(min-width: 768px) and (max-width: #{$layout-width-inner})",
+  'pc': "(min-width: #{$layout-width-inner})"//768px以上（タブレット・PC）用の表示
+
+);
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: sp) {
+//map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background: #fff;
+    color: $color-text;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration:none;
+    
+}
+
+.inner {
+width:100%;
+max-width:$layout-width-inner;
+margin: 0 auto;
+
+@include mq('sp') {
+    padding: 0 16px;
+        
+
+
+}
+}
+// 共通
+.title {
+    font-weight: 600;
+    text-align: center;
+    font-size: 36px;
+    padding: 30px 0;
+    padding-bottom: 40px;
+    position: relative;
+
+    @include mq('sp') {
+        font-size: 24px;
+        padding: 14px 0;
+        
+    }
+
+    &::before {
+        position: absolute;
+        transform: translate(-50%);
+        left: 50%;
+        top: 76px;
+        font-size: 21px;
+
+        @include mq('sp') {
+            top: 46px;
+            font-size: 16px;
+            
+        }
+
+    }
+
+
+
+}
+
+    
+
+// header
+
+.header {
+    background: rgba(255,255,255,0.7);
+    position: fixed;
+    // left: 50%;
+    width: 100%;
+    z-index: 100;
+    
+ 
+}
+
+.header-inner {
+
+}
+
+.header-nav {
+    padding-bottom: 20px;
+    @include mq('sp') {
+        background: #333;
+        
+    }
+}
+
+.header-menu {
+    display: flex;
+    justify-content: center;
+
+    @include mq('sp') {
+        display: block;
+        text-align: center;
+        
+    }
+}
+
+.drawer-hamburger-icon {
+    background-color: #fff;
+
+    &::before {
+        background: #fff;
+    }
+
+    &::after {
+        background: #fff;
+    }
+
+}
+
+.header-item {
+    margin-right: 30px;
+    position: relative;
+    display: inline-block;
+    transition: .3s;
+    font-size: 21px;
+
+    @include mq('sp') {
+        color: #fff;
+        
+    }
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        content: '';
+        width: 0;
+        height: 2px;
+        background-color: #333;
+        transition: .3s;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+
+}
+
+
+// main_header
+
+.main_header {
+    background: url(../img/main-top.jpg) no-repeat center center / cover;
+    // height: 600px;
+    background-attachment: fixed;
+    padding-top: 78px;
+    // position: relative;
+
+    @include mq('sp') {
+        background: url(../img/main-top.jpg) no-repeat bottom / cover;
+        // background-attachment: fixed;
+        // position: sticky;
+        padding-top: 0;
+        
+        
+    }
+}
+
+.main_header-inner {
+
+}
+
+
+.main-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 5rem;
+    color: #fff;
+    padding: 320px 0;
+    // position: absolute;
+    // top: 50%;
+    // right: 50%;
+    // transform: translateY(-50%);
+
+    @include mq('sp') {
+        font-size: 34px;
+        padding: 185px 0;
+
+        
+    }
+}
+
+// about
+.about {
+    background:url(../img/about-top.jpg) no-repeat center center / cover;
+    padding: 50px 20px;
+
+    @include mq('sp') {
+        padding: 17px 12px;
+        
+    }
+}
+
+.about-inner {
+    background: rgba(255,255,255, 0.75);
+    padding-bottom: 30px;
+    padding-right: 16px;
+}
+
+.about-title {
+    position: relative;
+    &::before {
+        content: "自己紹介";
+        // position: absolute;
+        // transform: translate(-50%);
+        // left: 50%;
+        // top: 50px;
+
+
+        
+    }
+
+}
+
+.about-group {
+    display: flex;
+    justify-content: space-between;
+
+    @include mq('sp') {
+        display: block;
+    }
+
+}
+
+.about-image {
+    flex: 0 0 38%;
+    text-align: center;
+
+    @include mq('sp') {
+        margin-top: 20px;
+        
+    }
+
+
+    img {
+        border-radius: 50%;
+        width: 170px;
+        height: 170px;
+
+        @include mq('sp') {
+            width: 110px;
+            height: 110px;
+        }
+    }
+} 
+
+.about-card {
+    flex: 0 0 58%;
+    font-weight: 600;
+
+    @include mq('sp') {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 13px;
+        
+    }
+}
+
+.about-detail {
+    @include mq('sp') {
+        text-align: center;
+        
+    }
+    
+}
+
+.about-profile {
+    margin-top: 12px;
+
+}
+
+.about-description {
+    margin-top: 14px;
+}
+
+// skill 
+
+.skill {
+    background: #333;
+    padding-bottom: 30px;
+}
+
+.skill-inner {
+
+}
+
+.skill-title {
+    color: #fff;
+
+    &::before {
+        content: "技術";
+    }
+}
+
+.skill-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @include mq('sp') {
+        margin-top: 20px;
+        
+    }
+}
+
+.skill-card {
+
+    flex: 0 0 33%;
+
+    @include mq('sp') {
+        flex: 0 0 30%;
+        width: 30%;
+
+        
+    }
+
+    &:nth-child(n + 4) {
+        margin-top: 30px;
+        
+    }
+
+}
+
+.skill-img {
+    text-align: center;
+    img {
+        width: 224px;
+        height: 224px;
+
+        @include mq('sp') {
+            width: 100%;
+            height: 100px;
+        }
+
+    }
+
+    
+}
+
+.skill-level {
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+
+    @include mq('sp') {
+        font-size: 10px;
+    }
+}
+
+.service {
+    background: url(../img/skill-top.jpg) no-repeat center center / cover;
+    padding: 50px 20px;
+
+    @include mq('sp') {
+        padding: 16px 12px;
+        
+    }
+}
+
+.service-inner {
+    background: rgba(255,255,255,0.7);
+    padding: 0 9px !important;
+
+}
+
+.service-title {
+
+    &::before {
+        content: "提供";
+    }
+}
+
+.service-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0px 20px;
+
+    @include mq('sp') {
+        margin-top: 20px;
+        padding: 0;
+        
+    }
+
+
+}
+
+.service-box {
+    flex: 0 0 30%;
+    padding-bottom: 20px;
+
+    @include mq('sp') {
+        width: 30%;
+        
+    }
+
+}
+
+.service-img {
+    text-align: center;
+    img {
+        width: 128px;
+        height: 128px;
+
+        @include mq('sp') {
+            width: 60px;
+            height: 60px;
+            
+        }
+    }
+}
+
+.service-subtitle {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 8px;
+
+    @include mq('sp') {
+        font-size: 12px;
+        
+    }
+
+
+}
+
+.service-detail {
+    margin-top: 8px;
+
+    @include mq('sp') {
+        font-size: 10px;
+        
+    }
+
+}
+
+.service-price {
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    font-size: 18px;
+
+    @include mq('sp') {
+        font-size: 14px;
+        
+    }
+}
+
+.service-price-comment {
+    padding-bottom: 30px;
+    text-align: center;
+
+    @include mq('sp') {
+        font-size: 14px;
+        
+    }
+}
+
+
+// work
+.work {
+    background: #333;
+    padding-bottom: 30px;
+
+    @include mq('sp') {
+        padding-bottom: 12px;
+        
+    }
+}
+
+.work-inner {
+
+    @include mq('tab') {
+        padding: 0 20px;
+    }
+
+}
+
+.work-title {
+    color: #fff;
+
+    &::before {
+        content: "実績";
+    }
+}
+
+.work-sub {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+
+    @include mq('sp') {
+        font-size: 14px;
+        margin-top: 12px;
+        
+    }
+}
+
+.work-cursor {
+    &:hover {
+       opacity: 0.8; 
+    }
+}
+
+.work-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+
+.work-box {
+    width: 30%;
+    margin-top: 20px;
+
+    @include mq('sp') {
+        width: 50%;
+        
+    }
+    
+
+   
+}
+
+.work-img {
+    display: inline-block;
+  transition: .3s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+
+    &:hover {
+        -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+    }
+    img {
+
+    }
+}
+
+.work-site {
+    color: #fff;
+    text-align: center;
+    margin-top: 24px;
+
+    @include mq('sp') {
+        font-size: 12px;
+        margin-top: 12px;
+        
+    }
+}
+
+// work-modal
+
+.work_modal,
+.work_modal2,
+.work_modal3
+ {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    display: none;
+}
+
+.work_modal-inner,
+.work_modal-inner2,
+.work_modal-inner3
+ {
+    height: 100%;
+    
+}
+
+.work_modal-img,
+.work_modal-img2,
+.work_modal-img3
+ {
+    height: 100%;
+    // flex: 0 0 16%;
+    
+    img {
+        height: 100%;
+    }
+}
+
+.work
+
+// contact
+
+.contact {
+
+}
+
+.contact-inner {
+
+}
+
+.contact-title {
+    &::before {
+        content: "お問い合わせ";
+    }
+}
+
+.contact-form {
+
+}
+
+.contact-group {
+
+}
+
+.contact-box {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.contact-area {
+    flex: 0 0 30%;
+}
+
+
+dd {
+    flex: 0 0 60%;
+}
+
+input[type="text"], 
+input[type="email"] {
+
+}
+
+textarea {
+
+}
+
+.contact-button {
+    text-align: center;
+
+    @include mq('sp') {
+        margin-top: 20px;
+        
+    }
+    
+    
+    a {
+        color: #fff;
+        display: inline-block;
+        color: #fff;
+        background: #333;
+        border: 1px solid rgba(0,0,0,.2);
+        box-shadow: none;
+        font-weight: 600;
+        font-size: 20px;
+        transition: all 0.3s ease 0s;
+        padding: 14px 65px;
+        border-radius: 4px;
+
+        @include mq('sp') {
+            font-size: 14px;
+            padding: 10px 24px;
+            
+        }
+
+   &:hover {
+       color: #333;
+       background: #fff;
+   }
+    }
+
+}
+
+.contact-info {
+    text-align: center;
+    color: #000;
+    margin-top: 26px;
+    font-size: 18px;
+
+    @include mq('sp') {
+        font-size: 14px;
+        
+    }
+}
+
+.footer {
+
+}
+
+.footer-inner {
+
+}
+
+
+.footer-copy {
+    text-align: center;
+    padding: 20px 0;
+
+    @include mq('sp') {
+        font-size: 12px;
+        
+    }
+}
+
+
